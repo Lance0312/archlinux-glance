@@ -1,0 +1,9 @@
+[Unit]
+Description=glance API server
+
+[Service]
+ExecStart=/usr/bin/glance-api
+User=glance
+
+[Install]
+WantedBy=multi-user.target

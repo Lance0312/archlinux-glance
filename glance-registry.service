@@ -1,0 +1,9 @@
+[Unit]
+Description=glance Registry server
+
+[Service]
+ExecStart=/usr/bin/glance-registry
+User=glance
+
+[Install]
+WantedBy=multi-user.target

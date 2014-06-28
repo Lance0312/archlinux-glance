@@ -1,0 +1,20 @@
+post_install() {
+  getent group glance &>/dev/null || groupadd glance >/dev/null
+  getent passwd glance &>/dev/null || useradd  -d /var/lib/glance -g glance -s /bin/false glance >/dev/null
+
+  chown -R root:glance /etc/glance
+  chown glance /var/log/glance
+  chown -R glance:glance /var/lib/glance
+}
+
+post_upgrade() {
+  post_install
+}
+
+pre_remove() {
+  getent passwd glance &>/dev/null && userdel glance >/dev/null
+  getent group glance &>/dev/null && groupdel glance >/dev/null
+  true
+}
+
+# vim:set ts=2 sw=2 et:
